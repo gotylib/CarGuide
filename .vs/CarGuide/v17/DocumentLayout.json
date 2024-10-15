@@ -1,0 +1,173 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\source\\repos\\CarGuide\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{569B0076-B96C-40A2-819A-97A00138A23D}|Infrastructure\\Infrastructure.csproj|c:\\users\\admin\\source\\repos\\carguide\\infrastructure\\repositories\\carrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{569B0076-B96C-40A2-819A-97A00138A23D}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\carrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{569B0076-B96C-40A2-819A-97A00138A23D}|Infrastructure\\Infrastructure.csproj|c:\\users\\admin\\source\\repos\\carguide\\infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{569B0076-B96C-40A2-819A-97A00138A23D}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29B1F2F4-CDEC-4CED-B05E-479C00F8AACE}|Domain\\Domain.csproj|c:\\users\\admin\\source\\repos\\carguide\\domain\\services\\carservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29B1F2F4-CDEC-4CED-B05E-479C00F8AACE}|Domain\\Domain.csproj|solutionrelative:domain\\services\\carservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29B1F2F4-CDEC-4CED-B05E-479C00F8AACE}|Domain\\Domain.csproj|c:\\users\\admin\\source\\repos\\carguide\\domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29B1F2F4-CDEC-4CED-B05E-479C00F8AACE}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29B1F2F4-CDEC-4CED-B05E-479C00F8AACE}|Domain\\Domain.csproj|c:\\users\\admin\\source\\repos\\carguide\\domain\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29B1F2F4-CDEC-4CED-B05E-479C00F8AACE}|Domain\\Domain.csproj|solutionrelative:domain\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29B1F2F4-CDEC-4CED-B05E-479C00F8AACE}|Domain\\Domain.csproj|c:\\users\\admin\\source\\repos\\carguide\\domain\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29B1F2F4-CDEC-4CED-B05E-479C00F8AACE}|Domain\\Domain.csproj|solutionrelative:domain\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{569B0076-B96C-40A2-819A-97A00138A23D}|Infrastructure\\Infrastructure.csproj|c:\\users\\admin\\source\\repos\\carguide\\infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{569B0076-B96C-40A2-819A-97A00138A23D}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29B1F2F4-CDEC-4CED-B05E-479C00F8AACE}|Domain\\Domain.csproj|c:\\users\\admin\\source\\repos\\carguide\\domain\\entities\\car.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29B1F2F4-CDEC-4CED-B05E-479C00F8AACE}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\car.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29B1F2F4-CDEC-4CED-B05E-479C00F8AACE}|Domain\\Domain.csproj|c:\\users\\admin\\source\\repos\\carguide\\domain\\repositories\\icarrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29B1F2F4-CDEC-4CED-B05E-479C00F8AACE}|Domain\\Domain.csproj|solutionrelative:domain\\repositories\\icarrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Infrastructure\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Infrastructure\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T13:40:20.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Domain\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\User.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Domain\\Entities\\User.cs",
+              "RelativeToolTip": "Domain\\Entities\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T13:25:43.9Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Domain\\Repositories\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "Domain\\Repositories\\IUserRepository.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Domain\\Repositories\\IUserRepository.cs",
+              "RelativeToolTip": "Domain\\Repositories\\IUserRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T13:25:40.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Domain\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "Domain\\Services\\UserService.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Domain\\Services\\UserService.cs",
+              "RelativeToolTip": "Domain\\Services\\UserService.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T13:26:09.568Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CarRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Infrastructure\\Repositories\\CarRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\CarRepository.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Infrastructure\\Repositories\\CarRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\CarRepository.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAA1wCMAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T13:40:48.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CarService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Domain\\Services\\CarService.cs",
+              "RelativeDocumentMoniker": "Domain\\Services\\CarService.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Domain\\Services\\CarService.cs",
+              "RelativeToolTip": "Domain\\Services\\CarService.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABkAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T13:25:59.32Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\UserRepository.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA4AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T13:41:14.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Car.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Domain\\Entities\\Car.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Car.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Domain\\Entities\\Car.cs",
+              "RelativeToolTip": "Domain\\Entities\\Car.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T13:25:42.457Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ICarRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Domain\\Repositories\\ICarRepository.cs",
+              "RelativeDocumentMoniker": "Domain\\Repositories\\ICarRepository.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CarGuide\\Domain\\Repositories\\ICarRepository.cs",
+              "RelativeToolTip": "Domain\\Repositories\\ICarRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T13:25:38.639Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
