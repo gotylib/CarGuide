@@ -18,7 +18,12 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(int id)
+        public Task DeleteAsync(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAsync(string name)
         {
             throw new NotImplementedException();
         }
@@ -28,7 +33,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<User> GetByIdAsync(int id)
+        public Task<User> GetByNameAsync(string name)
         {
             throw new NotImplementedException();
         }

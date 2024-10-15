@@ -9,10 +9,17 @@ namespace Domain.Entities
 {
     public class User : IdentityUser
     {
-        public string? Password { get; set; }
-        public string? RefreshToken { get; set; }
+        public string? Password { get; private set; }
+        public string? RefreshToken { get; private set; }
 
-        public DateTime? RefreshTokenExpiration { get; set; }
+        public DateTime? RefreshTokenExpiration { get; private set; }
+
+        public User(string _Password, string _RefreshToke, DateTime _RefreshTokenExpiration) 
+        {
+            Password = _Password;
+            RefreshToken = _RefreshToke;
+            RefreshTokenExpiration = _RefreshTokenExpiration;
+        }
     }
     
 }

@@ -21,12 +21,12 @@ namespace Domain.Services
         }
 
         // Получение пользователя по ID
-        public async Task<User> GetUserByIdAsync(int id)
+        public async Task<User> GetUserByNameAsync(string name)
         {
-            var user = await _userRepository.GetByIdAsync(id);
+            var user = await _userRepository.GetByNameAsync(name);
             if (user == null)
             {
-                throw new KeyNotFoundException($"User with ID {id} not found.");
+                throw new KeyNotFoundException($"User with ID {name} not found.");
             }
             return user;
         }
@@ -50,7 +50,7 @@ namespace Domain.Services
                 throw new ArgumentNullException(nameof(user), "User cannot be null.");
             }
 
-            var existingUser = await _userRepository.GetByIdAsync(user.Id);
+            var existingUser = await _userRepository.GetByIdAsync(user.);
             if (existingUser == null)
             {
                 throw new KeyNotFoundException($"User with ID {user.Id} not found.");
