@@ -14,11 +14,20 @@ namespace Domain.Entities
 
         public DateTime? RefreshTokenExpiration { get; private set; }
 
-        public User(string _Password, string _RefreshToke, DateTime _RefreshTokenExpiration) 
+        public User(string _Password = null, string _RefreshToke = null) 
         {
             Password = _Password;
             RefreshToken = _RefreshToke;
-            RefreshTokenExpiration = _RefreshTokenExpiration;
+        }
+
+        public void UpdateRefreshToken(string ?_RefreshToken)
+        {
+            RefreshToken = _RefreshToken;
+        }
+
+        public void UpdateRefreshTokenExpiration(DateTime? _RefreshTokenExpiration)
+        { 
+            RefreshTokenExpiration = _RefreshTokenExpiration; 
         }
     }
     

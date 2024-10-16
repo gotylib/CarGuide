@@ -73,5 +73,19 @@ namespace Domain.Services
 
             await _carRepository.DeleteAsync(id);
         }
+
+        // Изминение колличества автомобилей
+
+        public async Task UpdateCarQuantityAsync(int id, int quantity)
+        {
+             await _carRepository.UpdateQuantityAsync(id, quantity);
+        }
+
+        // Сделать автомобиль недоступным
+        public async Task SetCarAvailabilityAsync(int id, bool inAvailable)
+        {
+            await _carRepository.SetAvailabilityAsync(id, inAvailable);
+        }
+
     }
 }

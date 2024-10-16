@@ -2,45 +2,69 @@
 using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public UserRepository(ApplicationDbContext context)
+        public UserRepository(UserManager<User> userManager)
         {
-            _context = context;
+            _userManager = userManager;
         }
-        public Task AddAsync(User user)
+        public async Task<bool> AddAsync(User user)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(string name)
-        {
-            throw new NotImplementedException();
+            await _userManager.CreateAsync(user, user.Password);
+            return true;
         }
 
-        public Task DeleteAsync(string name)
+        public async Task<bool> DeleteAsync(string name)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByNameAsync(name);
+            if (user!=null)
+            {
+                await _userManager.DeleteAsync(user);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public Task<IEnumerable<User>> GetAllAsync()
+        public async Task<IEnumerable<User>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _userManager.Users.ToListAsync();
         }
 
-        public Task<User> GetByNameAsync(string name)
+        public async Task<User?> GetByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByNameAsync(name);
+            if (user != null)
+            {
+                return user;
+            }
+            else
+            {
+                return null;
+            }
         }
 
-        public Task UpdateAsync(User user)
+        public async Task<bool> UpdateAsync(User user)
         {
-            throw new NotImplementedException();
+            var Olduser = await _userManager.FindByNameAsync(user.UserName);
+            if (Olduser != null)
+            {
+                await _userManager.UpdateAsync(user);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

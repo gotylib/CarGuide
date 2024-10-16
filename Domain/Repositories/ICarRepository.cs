@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,10 @@ namespace Domain.Repositories
     {
         Task<IEnumerable<Car>> GetAllAsync();
         Task<Car> GetByIdAsync(int id);
-        Task AddAsync(Car car);
-        Task UpdateAsync(Car car);
-        Task DeleteAsync(int id);
+        Task<bool> AddAsync(Car car);
+        Task<bool> UpdateAsync(Car car);
+        Task<bool> DeleteAsync(int id);
+        Task<bool> UpdateQuantityAsync(int id, int quantity);
+        Task<bool> SetAvailabilityAsync(int id, bool isAvailable);
     }
 }
