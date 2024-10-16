@@ -1,4 +1,7 @@
 ﻿using Domain.Entities;
+using Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +12,10 @@ namespace Domain.Repositories
 {
     public interface IUserRepository
     {
-        Task<IEnumerable<User?>> GetAllAsync();
-        Task<User> GetByNameAsync(string name);
-        Task<bool> AddAsync(User user);
-        Task<bool> UpdateAsync(User user);
-        Task<bool> DeleteAsync(string name);
+        Task<List<EntityUser?>> GetAllAsync();
+        Task<EntityUser> GetByNameAsync(string name);
+        Task<IdentityResult> AddAsync(User user);
+        Task<IdentityResult> UpdateAsync(User user);
+        Task<IdentityResult> DeleteAsync(string name);
     }
 }

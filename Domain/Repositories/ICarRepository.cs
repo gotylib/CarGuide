@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,8 @@ namespace Domain.Repositories
 {
     public interface ICarRepository
     {
-        Task<IEnumerable<Car>> GetAllAsync();
-        Task<Car> GetByIdAsync(int id);
+        Task<IEnumerable<EntityCar>> GetAllAsync();
+        Task<EntityCar> GetByIdAsync(int id);
         Task<bool> AddAsync(Car car);
         Task<bool> UpdateAsync(Car car);
         Task<bool> DeleteAsync(int id);

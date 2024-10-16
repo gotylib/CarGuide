@@ -6,24 +6,26 @@ using Domain.Entities;
 using Domain.Services.Token;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using API.DTOs;
+using DTOs;
+using Domain.Services.Interfaces;
+using Infrastructure.Data;
 
 namespace Domain.Services
 {
-    public class TokenService
+    public class TokenService : ITokenService
     {
         private const int RefreshTokenExpirationDays = 1;
 
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<EntityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public TokenService(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        public TokenService(UserManager<EntityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
         }
 
-        public string GenerateAccessToken(User user)
+        public string GenerateAccessToken(EntityUser user)
         {
             var userRoles = _userManager.GetRolesAsync(user).Result;
 
@@ -70,7 +72,7 @@ namespace Domain.Services
             return GenerateAccessToken(user);
         }
 
-        public async Task<User> GetUserByRefreshTokenAsync(string refreshToken)
+        public async Task<EntityUser> GetUserByRefreshTokenAsync(string refreshToken)
         {
             // Получаем всех пользователей (или используем фильтрацию по refresh token в БД)
             var users = await _userManager.Users.ToListAsync();
@@ -84,17 +86,16 @@ namespace Domain.Services
             return null;
         }
 
-        private bool IsValidRefreshToken(User user, string refreshToken)
+        private bool IsValidRefreshToken(EntityUser user, string refreshToken)
         {
             return user.RefreshToken == refreshToken && user.RefreshTokenExpiration > DateTime.UtcNow;
         }
 
-        public async Task<RefreshTokenDto> CreateRefreshTokenAsync(User user)
+        public async Task<RefreshTokenDto> CreateRefreshTokenAsync(EntityUser user)
         {
             var refreshToken = GenerateRefreshToken();
-            user.UpdateRefreshToken(refreshToken.Token);
-            user.UpdateRefreshTokenExpiration(refreshToken.Expiration);
-
+            user.RefreshToken = refreshToken.Token;
+            user.RefreshTokenExpiration = refreshToken.Expiration;
             // Сохраняем изменения в user
             await _userManager.UpdateAsync(user);
             return refreshToken;

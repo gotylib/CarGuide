@@ -1,5 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
+using Domain.Services.Interfaces;
+using Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Services
 {
-    public class CarService
+    public class CarService : ICarService
     {
         private readonly ICarRepository _carRepository;
 
@@ -20,13 +22,17 @@ namespace Domain.Services
         // Получение всех автомобилей
         public async Task<IEnumerable<Car>> GetAllCarsAsync()
         {
-            return await _carRepository.GetAllAsync();
+             
+            var listUser  = (await  _carRepository.GetAllAsync()).ToList();
+            List<Car> cars = new List<Car>();
+            listUser.ForEach(car => cars.Add(EntityCar.ConvertToCar(car)));
+            return cars;
         }
 
         // Получение автомобиля по ID
         public async Task<Car> GetCarByIdAsync(int id)
         {
-            var car = await _carRepository.GetByIdAsync(id);
+            var car = EntityCar.ConvertToCar( await _carRepository.GetByIdAsync(id));
             if (car == null)
             {
                 throw new KeyNotFoundException($"Car with ID {id} not found.");

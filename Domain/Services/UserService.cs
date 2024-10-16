@@ -1,7 +1,8 @@
-﻿using API.DTOs;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Domain.Repositories;
 using Domain.Services.Interfaces;
+using DTOs;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,11 +15,11 @@ namespace Domain.Services
     {
         private readonly IUserRepository _userRepository;
 
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<EntityUser> _userManager;
 
         private readonly ITokenService _tokenService;
 
-        public UserService(IUserRepository userRepository, UserManager<User> userManager, ITokenService tokenService)
+        public UserService(IUserRepository userRepository, UserManager<EntityUser> userManager, ITokenService tokenService)
         {
             _userRepository = userRepository;
             _userManager = userManager;
@@ -26,15 +27,22 @@ namespace Domain.Services
         }
 
         // Получение всех пользователей
-        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        public async Task<List<User>> GetAllUsersAsync()
         {
-            return await _userRepository.GetAllAsync();
+            List<User> users = new List<User>();
+            var entityUsers =  await _userRepository.GetAllAsync();
+
+            for(int i = 0; i < entityUsers.Count; ++i)
+            {
+                users.Add(new User(entityUsers[i].UserName, entityUsers[i].Email, entityUsers[i].PasswordHash));
+            }
+            return users;
         }
 
         // Получение пользователя по ID
         public async Task<User> GetUserByNameAsync(string name)
         {
-            var user = await _userRepository.GetByNameAsync(name);
+            var user = EntityUser.ConvertToUser( (await _userRepository.GetByNameAsync(name)));
             if (user == null)
             {
                 throw new KeyNotFoundException($"User with ID {name} not found.");
@@ -43,18 +51,26 @@ namespace Domain.Services
         }
 
         // Добавление нового пользователя
-        public async Task AddUserAsync(User user)
+        public async Task<IActionResult> AddUserAsync(User user)
         {
             if (user == null)
             {
                 throw new ArgumentNullException(nameof(user), "User cannot be null.");
             }
 
-            await _userRepository.AddAsync(user);
+            var result = await _userRepository.AddAsync(user);
+            if (result.Succeeded)
+            {
+                return new OkResult();
+            }
+            else
+            {
+                return new BadRequestObjectResult(result.Errors);
+            }
         }
 
         // Обновление существующего пользователя
-        public async Task UpdateUserAsync(User user)
+        public async Task<IActionResult> UpdateUserAsync(User user)
         {
             if (user == null)
             {
@@ -62,29 +78,33 @@ namespace Domain.Services
             }
 
             var existingUser = await _userRepository.UpdateAsync(user);
-            if (existingUser == null)
+            if (existingUser.Succeeded)
             {
-                throw new KeyNotFoundException($"User with ID {user.Id} not found.");
+                return new OkResult();
             }
-
-            await _userRepository.UpdateAsync(user);
+            else
+            {
+                return new BadRequestObjectResult(existingUser.Errors);
+            }
         }
 
         // Удаление пользователя
-        public async Task DeleteUserAsync(string name)
+        public async Task<IActionResult> DeleteUserAsync(string name)
         {
-            var existingUser = await _userRepository.GetByNameAsync(name);
-            if (existingUser == null)
+           var result =  await _userRepository.DeleteAsync(name);
+            if (result.Succeeded)
             {
-                throw new KeyNotFoundException($"User with ID {name} not found.");
+                return new OkResult();
             }
-
-            await _userRepository.DeleteAsync(name);
+            else
+            {
+                return new BadRequestObjectResult(result.Errors);
+            }
         }
 
         public async Task<IActionResult> Register(RegisterDto model)
         {
-            var user = new User { UserName = model.Username, Email = model.Email };
+            var user = new EntityUser { UserName = model.Username, Email = model.Email };
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
@@ -111,7 +131,7 @@ namespace Domain.Services
 
         public async Task<IActionResult> Login(LoginDto model)
         {
-            var user = await _userManager.FindByEmailAsync(model.Email);
+            var user = await _userManager.FindByNameAsync(model.Name);
 
             if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password))
             {
@@ -120,8 +140,7 @@ namespace Domain.Services
 
             var accessToken = _tokenService.GenerateAccessToken(user);
             var refreshToken = _tokenService.GenerateRefreshToken();
-
-            user.UpdateRefreshToken(refreshToken.Token); // Обновление токена в базе данных
+            user.RefreshToken = refreshToken.Token; // Обновление токена в базе данных
             await _userManager.UpdateAsync(user);
 
             return new OkObjectResult(new { AccessToken = accessToken, RefreshToken = refreshToken.Token });
@@ -144,12 +163,13 @@ namespace Domain.Services
             var newAccessToken = _tokenService.GenerateAccessToken(user);
             var newRefreshToken = _tokenService.GenerateRefreshToken();
 
-            user.UpdateRefreshToken(newRefreshToken.Token);
-            user.UpdateRefreshTokenExpiration(newRefreshToken.Expiration);
+            user.RefreshToken = newRefreshToken.Token;
+            user.RefreshTokenExpiration = newRefreshToken.Expiration;
             await _userManager.UpdateAsync(user);
 
             return new OkObjectResult(new { AccessToken = newAccessToken, RefreshToken = newRefreshToken.Token });
         }
+
     }
 
 }

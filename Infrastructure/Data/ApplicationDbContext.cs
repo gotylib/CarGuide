@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class ApplicationDbContext : IdentityDbContext<EntityUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -12,6 +12,6 @@ namespace Infrastructure.Data
             Database.EnsureCreated();
         }
 
-        public DbSet<Car> Cars { get; set; }
+        public DbSet<EntityCar> Cars { get; set; }
     }
 }

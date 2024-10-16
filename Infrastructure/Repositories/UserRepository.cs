@@ -9,38 +9,32 @@ namespace Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<EntityUser> _userManager;
 
-        public UserRepository(UserManager<User> userManager)
+        public UserRepository(UserManager<EntityUser> userManager)
         {
             _userManager = userManager;
         }
-        public async Task<bool> AddAsync(User user)
+        public async Task<IdentityResult> AddAsync(User user)
         {
-            await _userManager.CreateAsync(user, user.Password);
-            return true;
+
+            return await _userManager.CreateAsync(EntityUser.ConwertToEntityUser(user), user.Password);
+            
         }
 
-        public async Task<bool> DeleteAsync(string name)
+        public async Task<IdentityResult> DeleteAsync(string name)
         {
             var user = await _userManager.FindByNameAsync(name);
-            if (user!=null)
-            {
-                await _userManager.DeleteAsync(user);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return await _userManager.DeleteAsync(user);
+
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync()
+        public async Task<List<EntityUser>> GetAllAsync()
         {
             return await _userManager.Users.ToListAsync();
         }
 
-        public async Task<User?> GetByNameAsync(string name)
+        public async Task<EntityUser?> GetByNameAsync(string name)
         {
             var user = await _userManager.FindByNameAsync(name);
             if (user != null)
@@ -53,18 +47,12 @@ namespace Infrastructure.Repositories
             }
         }
 
-        public async Task<bool> UpdateAsync(User user)
+        public async Task<IdentityResult> UpdateAsync(User user)
         {
-            var Olduser = await _userManager.FindByNameAsync(user.UserName);
-            if (Olduser != null)
-            {
-                await _userManager.UpdateAsync(user);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            var Olduser = await _userManager.FindByNameAsync(user.Name);
+
+             return await _userManager.UpdateAsync(EntityUser.ConwertToEntityUser(user));
+
         }
     }
 }

@@ -17,7 +17,8 @@ namespace Infrastructure.Repositories
 
         public async Task<bool> AddAsync(Car car)
         {
-            await _context.Cars.AddAsync(car);
+
+            await _context.Cars.AddAsync(EntityCar.ConwertToEntityCar(car));
             await _context.SaveChangesAsync();
             return true;
         }
@@ -37,12 +38,12 @@ namespace Infrastructure.Repositories
             }
         }
 
-        public async Task<IEnumerable<Car>> GetAllAsync()
+        public async Task<IEnumerable<EntityCar>> GetAllAsync()
         {
             return await _context.Cars.ToListAsync();
         }
 
-        public async Task<Car?> GetByIdAsync(int id)
+        public async Task<EntityCar?> GetByIdAsync(int id)
         {
             return await _context.Cars.FindAsync(id);
         }
@@ -52,7 +53,6 @@ namespace Infrastructure.Repositories
             var car = _context.Cars.Find(id);
             if (car != null)
             {
-                car = new Car(car.Make, car.Model, car.Color, car.StockCount, isAvailable);
                 _context.Entry(car).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
                 return true;
@@ -75,7 +75,6 @@ namespace Infrastructure.Repositories
             var car = _context.Cars.Find(id);
             if (car != null)
             {
-                car = new Car(car.Make, car.Model, car.Color, quantity, car.IsAvailable);
                 _context.Entry(car).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
                 return true;

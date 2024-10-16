@@ -1,5 +1,5 @@
-﻿using API.DTOs;
-using Domain.Entities;
+﻿using Domain.Entities;
+using DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,19 +12,19 @@ namespace Domain.Services.Interfaces
     public interface IUserService
     {
         // Получение всех пользователей
-        Task<IEnumerable<User>> GetAllUsersAsync();
+        Task<List<User>> GetAllUsersAsync();
 
         // Получение пользователя по имени
         Task<User> GetUserByNameAsync(string name);
 
         // Добавление нового пользователя
-        Task AddUserAsync(User user);
+        Task<IActionResult> AddUserAsync(User user);
 
         // Обновление существующего пользователя
-        Task UpdateUserAsync(User user);
+        Task<IActionResult> UpdateUserAsync(User user);
 
         // Удаление пользователя
-        Task DeleteUserAsync(string name);
+        Task<IActionResult> DeleteUserAsync(string name);
 
         Task<IActionResult> Register(RegisterDto model);
         Task<IActionResult> Login(LoginDto model);
