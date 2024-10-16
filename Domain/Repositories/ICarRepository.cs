@@ -11,10 +11,10 @@ namespace Domain.Repositories
 {
     public interface ICarRepository
     {
-        Task<IEnumerable<EntityCar>> GetAllAsync();
+        Task<IEnumerable<EntityCar>> GetAllAsync(bool priority);
         Task<EntityCar> GetByIdAsync(int id);
         Task<bool> AddAsync(Car car);
-        Task<bool> UpdateAsync(Car car);
+        Task<bool> UpdateAsync(int id, Car car);
         Task<bool> DeleteAsync(int id);
         Task<bool> UpdateQuantityAsync(int id, int quantity);
         Task<bool> SetAvailabilityAsync(int id, bool isAvailable);

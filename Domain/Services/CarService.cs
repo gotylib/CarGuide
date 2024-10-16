@@ -2,6 +2,7 @@
 using Domain.Repositories;
 using Domain.Services.Interfaces;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,17 +14,26 @@ namespace Domain.Services
     public class CarService : ICarService
     {
         private readonly ICarRepository _carRepository;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public CarService(ICarRepository carRepository)
+        public CarService(ICarRepository carRepository, RoleManager<IdentityRole> roleManager)
         {
             _carRepository = carRepository;
+            _roleManager = roleManager;
         }
 
         // Получение всех автомобилей
         public async Task<IEnumerable<Car>> GetAllCarsAsync()
         {
-             
-            var listUser  = (await  _carRepository.GetAllAsync()).ToList();
+            var listUser  = (await  _carRepository.GetAllAsync(true)).ToList();
+            List<Car> cars = new List<Car>();
+            listUser.ForEach(car => cars.Add(EntityCar.ConvertToCar(car)));
+            return cars;
+        }
+
+        public async Task<IEnumerable<Car>> GetForAllCarsAsync()
+        {
+            var listUser = (await _carRepository.GetAllAsync(false)).ToList();
             List<Car> cars = new List<Car>();
             listUser.ForEach(car => cars.Add(EntityCar.ConvertToCar(car)));
             return cars;
@@ -52,20 +62,20 @@ namespace Domain.Services
         }
 
         // Обновление существующего автомобиля
-        public async Task UpdateCarAsync(Car car)
+        public async Task UpdateCarAsync(int id, Car car)
         {
             if (car == null)
             {
                 throw new ArgumentNullException(nameof(car), "Car cannot be null.");
             }
 
-            var existingCar = await _carRepository.GetByIdAsync(car.Id);
+            var existingCar = await _carRepository.GetByIdAsync(id);
             if (existingCar == null)
             {
                 throw new KeyNotFoundException($"Car with ID {car.Id} not found.");
             }
 
-            await _carRepository.UpdateAsync(car);
+            await _carRepository.UpdateAsync(id,car);
         }
 
         // Удаление автомобиля

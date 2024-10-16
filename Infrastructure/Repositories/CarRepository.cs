@@ -38,9 +38,16 @@ namespace Infrastructure.Repositories
             }
         }
 
-        public async Task<IEnumerable<EntityCar>> GetAllAsync()
+        public async Task<IEnumerable<EntityCar>> GetAllAsync(bool priority)
         {
-            return await _context.Cars.ToListAsync();
+            if (priority)
+            {
+                return await _context.Cars.ToListAsync();
+            }
+            else
+            {
+                return await _context.Cars.Where(c => c.IsAvailable == true).ToListAsync();
+            }
         }
 
         public async Task<EntityCar?> GetByIdAsync(int id)
@@ -53,7 +60,8 @@ namespace Infrastructure.Repositories
             var car = _context.Cars.Find(id);
             if (car != null)
             {
-                _context.Entry(car).State = EntityState.Modified;
+                car.IsAvailable = isAvailable;
+                _context.Cars.Update(car);
                 await _context.SaveChangesAsync();
                 return true;
             }
@@ -63,19 +71,32 @@ namespace Infrastructure.Repositories
             }
         }
 
-        public async Task<bool> UpdateAsync(Car car)
+        public async Task<bool> UpdateAsync(int id, Car car)
         {
-            _context.Entry(car).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return true;
-
+            var updateCar = _context.Cars.Find(id);
+            if (updateCar != null) 
+            {
+                updateCar.Make = car.Make;
+                updateCar.Color = car.Color;
+                updateCar.Model = car.Model;
+                updateCar.IsAvailable = car.IsAvailable;
+                updateCar.StockCount = car.StockCount;
+                _context.Cars.Update(updateCar);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            else
+            {
+                return false;   
+            }
         }
         public async Task<bool> UpdateQuantityAsync(int id, int quantity)
         {
             var car = _context.Cars.Find(id);
             if (car != null)
             {
-                _context.Entry(car).State = EntityState.Modified;
+                car.StockCount = quantity;
+                _context.Cars.Update(car);  
                 await _context.SaveChangesAsync();
                 return true;
             }

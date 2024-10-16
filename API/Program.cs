@@ -129,7 +129,7 @@ static async Task InitializeRoles(WebApplication app)
         }
         catch (Exception ex)
         {
-            // Ëîãèðîâàíèå îøèáîê
+            
             var logger = services.GetRequiredService<ILogger<Program>>();
             logger.LogError(ex, "An error occurred while seeding roles.");
         }

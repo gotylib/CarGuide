@@ -31,7 +31,7 @@ namespace Infrastructure.Data
 
         public static Car ConvertToCar(EntityCar entityCar)
         {
-            Car car = new Car(entityCar.Id,entityCar.Make, entityCar.Model, entityCar.Color, entityCar.StockCount, entityCar.IsAvailable);
+            Car car = new Car(entityCar.Make, entityCar.Model, entityCar.Color, entityCar.StockCount, entityCar.IsAvailable, entityCar.Id);
             return car;
         }
 

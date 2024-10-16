@@ -25,17 +25,6 @@ namespace Domain.Entities
             Password = _Password;
             RefreshToken = _RefreshToke;
         }
-
-        public void UpdateRefreshToken(string ?_RefreshToken)
-        {
-            RefreshToken = _RefreshToken;
-        }
-
-        public void UpdateRefreshTokenExpiration(DateTime? _RefreshTokenExpiration)
-        { 
-            RefreshTokenExpiration = _RefreshTokenExpiration; 
-        }
-
         public User (UserDto _user)
         {
             if (_user == null)

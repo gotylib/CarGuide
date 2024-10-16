@@ -12,6 +12,8 @@ namespace Domain.Services.Interfaces
         // Получение всех автомобилей
         Task<IEnumerable<Car>> GetAllCarsAsync();
 
+        public Task<IEnumerable<Car>> GetForAllCarsAsync();
+
         // Получение автомобиля по ID
         Task<Car> GetCarByIdAsync(int id);
 
@@ -19,7 +21,7 @@ namespace Domain.Services.Interfaces
         Task AddCarAsync(Car car);
 
         // Обновление существующего автомобиля
-        Task UpdateCarAsync(Car car);
+        Task UpdateCarAsync(int id, Car car);
 
         // Удаление автомобиля
         Task DeleteCarAsync(int id);
