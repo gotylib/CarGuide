@@ -17,7 +17,7 @@ namespace Domain.Entities
         public int StockCount { get; private set; }
         public bool IsAvailable { get; private set; }
 
-        public Car(string _Make, string _Model, string _Color, int _StockCount, bool _IsAvailable, int? _Id)
+        public Car(string _Make, string _Model, string _Color, int _StockCount, bool _IsAvailable, int? _Id = null)
         {
             Id = _Id;
             Make = _Make;

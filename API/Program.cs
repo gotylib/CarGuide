@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using NLog.Web;
 using Domain.Repositories;
 using Infrastructure.Repositories;
+using API.CastomMiddleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -111,7 +112,7 @@ if (app.Environment.IsDevelopment())
 
 await InitializeRoles(app);
 
-//app.UseMiddleware<ErrorHandlingMiddleware>();
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 
 await app.RunAsync();

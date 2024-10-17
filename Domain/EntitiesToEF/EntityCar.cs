@@ -26,6 +26,10 @@ namespace Infrastructure.Data
             entityCar.Color = car.Color;
             entityCar.StockCount = car.StockCount;
             entityCar.IsAvailable = car.IsAvailable;
+            if(car.Id != null)
+            {
+                entityCar.Id = car.Id.Value;
+            }
             return entityCar;
         }
 
